@@ -1,0 +1,25 @@
+body{
+    width: 100%;
+    max-width: 1200px;
+    margin:auto;
+}
+
+#main-header{
+    background-image: url("/resources/img/brand/Mask\ group.png");
+    background-repeat: no-repeat;
+    width:100%;
+    object-fit: cover;
+    height:41.6875rem;
+
+    #tagline{
+        width:60%;
+      }
+}
+
+img{
+    width:100%;
+}
+
+#main-logo{
+ width:207px;
+}

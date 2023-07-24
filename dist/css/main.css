@@ -1,0 +1,55 @@
+/*Abstracts*/
+/*base*/
+@import url("https://fonts.googleapis.com/css2?family=Anton&family=Manrope:wght@200;300;400;500;600;700;800&display=swap");
+/*font-family: 'Anton', sans-serif;
+font-family: 'Manrope', sans-serif;
+*/
+body {
+  font-family: "Manrope", sans-serif;
+  font-size: 1rem;
+}
+
+h1, h2, h3, h4, h5, #tagline {
+  font-family: "Anton", sans-serif;
+}
+
+#tagline {
+  font-size: 2.75rem;
+}
+
+/*components*/
+/*Layouts*/
+#main-header {
+  padding: 1rem;
+}
+
+/*Pages*/
+body {
+  width: 100%;
+  max-width: 1200px;
+  margin: auto;
+}
+
+#main-header {
+  background-image: url("/resources/img/brand/Mask group.png");
+  background-repeat: no-repeat;
+  width: 100%;
+  object-fit: cover;
+  height: 41.6875rem;
+}
+#main-header #tagline {
+  width: 60%;
+}
+
+img {
+  width: 100%;
+}
+
+#main-logo {
+  width: 207px;
+}
+
+/*Themes*/
+#tagline {
+  color: #FFD15B;
+}/*# sourceMappingURL=main.css.map */
