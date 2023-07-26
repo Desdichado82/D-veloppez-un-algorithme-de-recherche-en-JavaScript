@@ -9,7 +9,7 @@ body {
   font-size: 1rem;
 }
 
-h1, h2, h3, h4, h5, #tagline {
+h1, h2, h3, h4, h5, h6, #tagline {
   font-family: "Anton", sans-serif;
 }
 
@@ -17,10 +17,104 @@ h1, h2, h3, h4, h5, #tagline {
   font-size: 2.75rem;
 }
 
+.ingredient {
+  font-weight: 700;
+}
+
 /*components*/
+.petiteBtn {
+  background-color: black;
+  color: white;
+  transition: background-color 0.3s ease;
+}
+.petiteBtn:hover {
+  background-color: #FFD15B;
+  color: black;
+}
+
+article img {
+  height: 250px;
+  object-fit: cover;
+}
+article p {
+  overflow: hidden;
+  line-height: 1.2rem;
+  max-height: 8rem;
+  -webkit-box-orient: vertical;
+  display: block;
+  display: -webkit-box;
+  overflow: hidden !important;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 4;
+}
+
+.ingredients-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Create three equal columns */
+  grid-gap: 5px; /* Adjust the gap between the cards */
+}
+
+.top-0 {
+  top: 1rem !important; /* Adjust the top distance as needed */
+}
+
+.end-0 {
+  right: 1rem !important; /* Adjust the right distance as needed */
+}
+
+.bg-warning {
+  background-color: #FFD15B !important;
+  color: black !important;
+}
+
+input:focus {
+  outline: none !important;
+}
+
+#searchContainer {
+  height: 100%;
+}
+
+.search-group {
+  position: relative;
+}
+
+.search-button {
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+#searchBar {
+  background: white;
+  padding: 5px;
+  max-width: 957px;
+  border-radius: 3px;
+}
+
+#searchInput {
+  background: transparent;
+  border: none;
+}
+
+#searchInput:focus {
+  outline: none;
+}
+
 /*Layouts*/
 #main-header {
   padding: 1rem;
+}
+
+/* CSS for the recipe cards using CSS Grid */
+.card-container {
+  padding: 1rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Create three equal columns */
+  grid-gap: 20px; /* Adjust the gap between the cards */
 }
 
 /*Pages*/
@@ -41,6 +135,10 @@ body {
   width: 60%;
 }
 
+#search-container {
+  height: 100%;
+}
+
 img {
   width: 100%;
 }
@@ -52,4 +150,8 @@ img {
 /*Themes*/
 #tagline {
   color: #FFD15B;
+}
+
+#main-content {
+  background-color: #E5E5E5;
 }/*# sourceMappingURL=main.css.map */

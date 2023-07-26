@@ -8,11 +8,15 @@
     font-size: 1rem;
   }
 
-  h1,h2,h3,h4,h5,#tagline{
+  h1,h2,h3,h4,h5,h6,#tagline{
     font-family: 'Anton', sans-serif;
   }
 
   #tagline{
     font-size: 2.75rem;
 
+  }
+
+  .ingredient{
+    font-weight: 700;
   }

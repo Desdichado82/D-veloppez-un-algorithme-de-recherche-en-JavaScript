@@ -1,0 +1,39 @@
+article{
+    img{
+        height:250px;
+        object-fit: cover;
+    }
+
+    p {
+        overflow:hidden;
+        line-height: 1.2rem;
+        max-height: 8rem;
+        -webkit-box-orient: vertical;
+        display: block;
+        display: -webkit-box;
+        overflow: hidden !important;
+        text-overflow: ellipsis;
+        -webkit-line-clamp: 4;
+
+      }
+}
+
+.ingredients-list{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Create three equal columns */
+    grid-gap: 5px; /* Adjust the gap between the cards */
+}
+
+.top-0 {
+    top: 1rem!important; /* Adjust the top distance as needed */
+  }
+  
+  .end-0 {
+    right: 1rem!important; /* Adjust the right distance as needed */
+  }
+
+  .bg-warning{
+    background-color: $yellow!important;
+    color:black!important;
+  }
+

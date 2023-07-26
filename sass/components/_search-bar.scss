@@ -1,0 +1,31 @@
+#searchContainer{
+height:100%;
+}
+.search-group {
+    position: relative;
+}
+
+.search-button {
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+#searchBar{
+    background:white;
+    padding:5px;
+    max-width:957px;
+    border-radius: 3px;
+}
+
+#searchInput{
+    background: transparent;
+    border:none;
+}
+
+#searchInput:focus{
+    outline:none;
+}
