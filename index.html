@@ -28,7 +28,54 @@
             </div>
          </div>
       </header>
-      <nav></nav>
+      <nav id="main-nav" class="d-flex justify-content-between">
+         <div id="dropdownContainer" class="d-flex m-3">
+            <div class="wrapper">
+               <div class="select-btn">
+                  <span>Ingrédients</span>
+                  <i class="material-icons">expand_more</i>
+               </div>
+               <div class="content">
+                  <div class="search">
+                     <input type="search" name="" id="ingredientsFilter">
+                     <i class="material-icons">search</i>
+                  </div>
+                  <ul class="options"></ul>
+               </div>
+            </div>
+            <div class="wrapper">
+               <div class="select-btn">
+                  <span>Appareils</span>
+                  <i class="material-icons">expand_more</i>
+               </div>
+               <div class="content">
+                  <div class="search">
+                     <input type="search" name="" id="appareilsFilter">
+                     <i class="material-icons">search</i>
+                  </div>
+                  <ul class="options"></ul>
+               </div>
+            </div>
+            <div class="wrapper">
+               <div class="select-btn">
+                  <span>Ustensiles</span>
+                  <i class="material-icons">expand_more</i>
+               </div>
+               <div class="content">
+                  <div class="search">
+                     <input type="search" name="" id="ustensilesFilter">
+                     <i class="material-icons">search</i>
+                  </div>
+                  <ul class="options"></ul>
+               </div>
+            </div>
+         </div>
+         <div id="recettesTotalContainer" class="d-flex align-items-center gap-1 m-3">
+            <span class="total">50 </span>
+            <span class="totalTag">Recettes</span>
+         </div>
+      </nav>
+      <div id="labelSearchContainer" class="d-flex"></div>
       <main id="recetteContainer"class="card-container">
       </main>
       <footer></footer>
