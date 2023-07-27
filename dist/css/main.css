@@ -18,7 +18,7 @@ h1, h2, h3, h4, h5, h6, #tagline {
 }
 
 .ingredient {
-  font-weight: 700;
+  font-weight: 600;
 }
 
 /*components*/
@@ -105,16 +105,16 @@ input:focus {
 }
 
 /*Layouts*/
-#main-header {
-  padding: 1rem;
-}
-
 /* CSS for the recipe cards using CSS Grid */
 .card-container {
   padding: 1rem;
   display: grid;
   grid-template-columns: repeat(3, 1fr); /* Create three equal columns */
   grid-gap: 20px; /* Adjust the gap between the cards */
+}
+
+#main-header {
+  padding: 1rem;
 }
 
 /*Pages*/

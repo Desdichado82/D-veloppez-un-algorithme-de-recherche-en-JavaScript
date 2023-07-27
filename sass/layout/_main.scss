@@ -1,7 +1,0 @@
-/* CSS for the recipe cards using CSS Grid */
-.card-container {
-    padding:1rem;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); /* Create three equal columns */
-    grid-gap: 20px; /* Adjust the gap between the cards */
-  }
