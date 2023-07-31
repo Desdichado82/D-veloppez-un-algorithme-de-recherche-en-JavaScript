@@ -25,6 +25,11 @@ h1, h2, h3, h4, h5, h6, #tagline, .total, .totalTag {
   font-weight: 600;
 }
 
+@media only screen and (max-width: 600px) {
+  #tagline {
+    font-size: 1.5rem;
+  }
+}
 /*components*/
 .petiteBtn {
   background-color: black;
@@ -242,6 +247,23 @@ input:focus {
   padding: 1rem;
 }
 
+@media only screen and (max-width: 600px) {
+  #main-header {
+    height: auto;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .card-container {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+@media only screen and (max-width: 600px) {
+  #main-nav, #dropdownContainer {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}
 /*Pages*/
 body {
   width: 100%;
