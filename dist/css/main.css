@@ -76,6 +76,10 @@ article p {
   color: black !important;
 }
 
+.hide {
+  display: none;
+}
+
 input:focus {
   outline: none !important;
 }
