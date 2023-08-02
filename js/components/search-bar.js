@@ -26,28 +26,43 @@ const recipeCardIncludesSearchTerm = (card, searchTerm) =>{
     return false;
 };
 
-const searchRecipes = input =>{
-    const searchTerm = input.trim();
-    const recipeCards = document.querySelectorAll('.card');
+let searchTerm = ''; // Move searchTerm declaration outside the function
 
-    recipeCards.forEach(card=>{
-        const isVisible = recipeCardIncludesSearchTerm(card,searchTerm);
-        card.style.display = isVisible ?'block' : 'none';
+const searchRecipes = () => {
+  const searchInput = document.getElementById('searchInput');
+  searchTerm = searchInput.value.trim(); // Update the global searchTerm value
+  const recipeCards = document.querySelectorAll('.card');
+  const mainHeader = document.getElementById('main-header');
+  let matchFound = false;
+
+  if (searchTerm.length >= 3) {
+    recipeCards.forEach((card) => {
+      const isVisible = recipeCardIncludesSearchTerm(card, searchTerm);
+      card.style.display = isVisible ? 'block' : 'none';
+      if (isVisible) matchFound = true;
     });
+  } else {
+    recipeCards.forEach((card) => {
+      card.style.display = 'block';
+    });
+    searchTerm = ''; // Clear searchTerm when input value is empty
+  }
+
+  const alertDiv = document.querySelector('.alert');
+  if (!matchFound && !alertDiv && searchTerm) {
+    const alertMessage = ` Aucune recette ne contient '${searchTerm}'. vous pouvez chercher 'tarte aux pommes', 'poisson', etc.`;
+    const alertDiv = document.createElement('div');
+    alertDiv.className = 'alert alert-danger mt-3';
+    alertDiv.setAttribute('role', 'alert');
+    alertDiv.textContent = alertMessage;
+    mainHeader.appendChild(alertDiv);
+  } else if ((matchFound || !searchTerm) && alertDiv) {
+    alertDiv.remove();
+  }
 };
 
 const searchInput = document.getElementById('searchInput');
 
-searchInput.addEventListener('input', ()=>{
-    const userInput = searchInput.value;
-
-    if(userInput.length >= 3){
-        searchRecipes(userInput);
-    }else{
-          // If the input is less than 3 characters or empty, display all recipes
-    const recipeCards = document.querySelectorAll('.card');
-    recipeCards.forEach(card => {
-      card.style.display = 'block';
-    });
-    }
+searchInput.addEventListener('input', () => {
+  searchRecipes();
 });
