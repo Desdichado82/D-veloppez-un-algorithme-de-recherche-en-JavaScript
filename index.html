@@ -9,7 +9,7 @@
       <link rel="stylesheet" href="./dist/css/main.css">
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
          rel="stylesheet">
-         <script  src="./js/components/search-bar.js" defer></script>
+         
    </head>
   
    <body class="mx-auto">
@@ -32,59 +32,68 @@
          </div>
       </header>
       <nav id="main-nav" class="d-flex justify-content-between">
-         <div id="dropdownContainer" class="d-flex m-3">
-            <div class="wrapper">
-               <div class="select-btn">
-                  <span>Ingrédients</span>
-                  <i class="material-icons">expand_more</i>
-               </div>
-               <div class="content">
-                  <div class="search">
-                     <input type="search" name="" id="ingredientsFilter">
-                     <i class="material-icons">search</i>
-                  </div>
-                  <ul class="options"></ul>
-               </div>
+        <div id="dropdownContainer" class="d-flex m-3">
+          <div class="wrapper" data-dropdown="ingredientsContent">
+            <div class="select-btn">
+              <span>Ingrédients</span>
+              <i class="material-icons">expand_more</i>
             </div>
-            <div class="wrapper">
-               <div class="select-btn">
-                  <span>Appareils</span>
-                  <i class="material-icons">expand_more</i>
-               </div>
-               <div class="content">
-                  <div class="search">
-                     <input type="search" name="" id="appareilsFilter">
-                     <i class="material-icons">search</i>
-                  </div>
-                  <ul class="options"></ul>
-               </div>
+            <div id="ingredientsContent" class="content">
+              <div class="search">
+                <input type="search" name="" id="ingredientsFilter">
+                <i class="material-icons">search</i>
+              </div>
+            
             </div>
-            <div class="wrapper">
-               <div class="select-btn">
-                  <span>Ustensiles</span>
-                  <i class="material-icons">expand_more</i>
-               </div>
-               <div class="content">
-                  <div class="search">
-                     <input type="search" name="" id="ustensilesFilter">
-                     <i class="material-icons">search</i>
-                  </div>
-                  <ul class="options"></ul>
-               </div>
+          </div>
+          <div class="wrapper" data-dropdown="appareilsContent">
+            <div class="select-btn">
+              <span>Appareils</span>
+              <i class="material-icons">expand_more</i>
             </div>
-         </div>
-         <div id="recettesTotalContainer" class="d-flex align-items-center gap-1 m-3">
-            <span class="total">50 </span>
-            <span class="totalTag">Recettes</span>
-         </div>
+            <div id="appareilsContent" class="content">
+              <div class="search">
+                <input type="search" name="" id="appareilsFilter">
+                <i class="material-icons">search</i>
+              </div>
+              
+            </div>
+          </div>
+          <div class="wrapper" data-dropdown="ustensilesContent">
+            <div class="select-btn">
+              <span>Ustensiles</span>
+              <i class="material-icons">expand_more</i>
+            </div>
+            <div id="ustensilesContent" class="content">
+              <div class="search">
+                <input type="search" name="" id="ustensilesFilter">
+                <i class="material-icons">search</i>
+              </div>
+            
+            </div>
+          </div>
+        </div>
+        <div id="recettesTotalContainer" class="d-flex align-items-center gap-1 m-3">
+          <span class="total">50</span>
+          <span class="totalTag">Recettes</span>
+        </div>
       </nav>
+      
+       
       <div id="labelSearchContainer" class="d-flex"></div>
       <main id="recetteContainer"class="card-container">
       </main>
       <footer></footer>
+      <script type="module" src="./js/json/recipes.js"></script>
       <script type="module" src="./js/modules/recette.js"></script>
       <script type="module" src="./js/factories/recette-carteFactory.js"></script>
       <script type="module" src="./js/api/api.js"></script>
+      <script type="module" src="./js/components/search-bar.js"></script>
+      <script type="module" src="./js/components/dropdown.js"></script>
+ 
+
+     
+    
   
    </body>
 </html>
