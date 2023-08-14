@@ -26,6 +26,19 @@ export default class Dropdown {
     filterBadgesContainer.appendChild(badge);
   }
 
+  attachBadgeCloseButtonListener() {
+    const filterBadgesContainer = document.getElementById('filterBadges');
+    filterBadgesContainer.addEventListener('click', event => {
+      if (event.target.classList.contains('close-icon')) {
+        const badge = event.target.closest('.badge');
+        const option = badge.textContent;
+        this.filterManager.removeFromCombinedOptions(option); // Remove option from combined options
+
+        badge.remove();
+      }
+    });
+  }
+
   initDropdown() {
     const optionList = document.createElement('ul');
     optionList.className = 'options';
@@ -44,16 +57,7 @@ export default class Dropdown {
       });
 
           // Add event listeners for the close buttons of badges
-    const filterBadgesContainer = document.getElementById('filterBadges');
-    filterBadgesContainer.addEventListener('click', event => {
-        if (event.target.classList.contains('close-icon')) {
-            const badge = event.target.closest('.badge');
-            const option = badge.textContent;
-            this.filterManager.removeFromCombinedOptions(option); // Remove option from combined options
-           
-            badge.remove();
-        }
-    });
+          this.attachBadgeCloseButtonListener(); // Attach the badge close button listener
 
       optionList.appendChild(optionElement);
     });
@@ -92,6 +96,7 @@ export default class Dropdown {
       optionElement.addEventListener('click', () => {
         this.onSelect(option); // Call the provided callback
         this.createAndAppendBadge(option); // Create and append the badge
+        this.attachBadgeCloseButtonListener(); // Attach the badge close button listener
         this.wrapper.classList.remove('active'); // Remove the active class from the wrapper
       });
 
