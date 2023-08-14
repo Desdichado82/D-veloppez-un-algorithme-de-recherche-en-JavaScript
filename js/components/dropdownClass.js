@@ -1,3 +1,5 @@
+import FilterManager from '../components/filterManager.js';
+
 export default class Dropdown {
   constructor(containerId, options, onSelect) {
     this.wrapper = document.querySelector(`[data-dropdown="${containerId}"]`);
@@ -5,6 +7,23 @@ export default class Dropdown {
     this.options = options;
     this.onSelect = onSelect;
     this.filteredOptions = options; // Initialize filtered options
+    this.filterManager = new FilterManager();
+    this.filterManager.addObserver(this); // R
+  }
+
+  createAndAppendBadge(option) {
+    const badge = document.createElement('div');
+    badge.className = 'badge';
+    badge.textContent = option;
+
+    const closeIcon = document.createElement('span');
+    closeIcon.className = 'close-icon';
+    closeIcon.textContent = 'x';
+
+    badge.appendChild(closeIcon);
+
+    const filterBadgesContainer = document.getElementById('filterBadges');
+    filterBadgesContainer.appendChild(badge);
   }
 
   initDropdown() {
@@ -18,8 +37,23 @@ export default class Dropdown {
 
       optionElement.addEventListener('click', () => {
         this.onSelect(option); // Call the provided callback
+        this.filterManager.addToCombinedOptions(option); // Add option to combined options
+        // Create and append the badge
+        this.createAndAppendBadge(option); // Create and append the badge
         this.wrapper.classList.remove('active'); // Remove the active class from the wrapper
       });
+
+          // Add event listeners for the close buttons of badges
+    const filterBadgesContainer = document.getElementById('filterBadges');
+    filterBadgesContainer.addEventListener('click', event => {
+        if (event.target.classList.contains('close-icon')) {
+            const badge = event.target.closest('.badge');
+            const option = badge.textContent;
+            this.filterManager.removeFromCombinedOptions(option); // Remove option from combined options
+           
+            badge.remove();
+        }
+    });
 
       optionList.appendChild(optionElement);
     });
@@ -42,6 +76,8 @@ export default class Dropdown {
 
     // Update the options list
     this.updateOptions(this.filteredOptions);
+
+    
   }
 
   updateOptions(options) {
@@ -55,6 +91,7 @@ export default class Dropdown {
 
       optionElement.addEventListener('click', () => {
         this.onSelect(option); // Call the provided callback
+        this.createAndAppendBadge(option); // Create and append the badge
         this.wrapper.classList.remove('active'); // Remove the active class from the wrapper
       });
 
