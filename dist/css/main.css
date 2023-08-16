@@ -225,6 +225,11 @@ input:focus {
   color: black;
 }
 
+.selected {
+  background-color: #FFD15B; /* Set your desired background color */
+  font-weight: bold; /* Set your desired font weight */
+}
+
 #searchContainer {
   height: 100%;
 }

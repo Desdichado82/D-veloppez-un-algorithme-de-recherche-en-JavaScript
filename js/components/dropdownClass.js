@@ -17,8 +17,8 @@ export default class Dropdown {
     const selection =  badge.textContent;
 
     const closeIcon = document.createElement('span');
-    closeIcon.className = 'close-icon';
-    closeIcon.textContent = 'x';
+    closeIcon.className = 'material-icons';
+    closeIcon.textContent = 'clear';
 
     badge.appendChild(closeIcon);
 
@@ -32,7 +32,7 @@ export default class Dropdown {
   attachBadgeCloseButtonListener() {
     const filterBadgesContainer = document.getElementById('filterBadges');
     filterBadgesContainer.addEventListener('click', event => {
-        if (event.target.classList.contains('close-icon')) {
+        if (event.target.classList.contains('material-icons')) {
             const badge = event.target.closest('.badge');
             const option =   badge.firstChild.textContent;
            this.filterManager.removeFromCombinedOptions(option); // Remove option from combined options
@@ -55,6 +55,22 @@ export default class Dropdown {
         // Create and append the badge
         this.createAndAppendBadge(option); // Create and append the badge
         this.wrapper.classList.remove('active'); // Remove the active class from the wrapper
+        // Add selected class to change background and font weight
+        optionElement.classList.add('selected');
+        // Add close icon to the option
+        const closeIcon = document.createElement('span');
+        closeIcon.className = 'material-icons';
+        closeIcon.textContent ='highlight_off';
+        optionElement.appendChild(closeIcon);
+
+
+          // Add click event listener to the close icon
+          closeIcon.addEventListener('click', event => {
+            event.stopPropagation(); // Prevent option click event from triggering
+            this.onCloseIconClick(optionElement, option);
+        });
+
+     
       });
 
           // Add event listeners for the close buttons of badges
@@ -68,6 +84,35 @@ export default class Dropdown {
     const searchInput = this.container.querySelector('.search input');
     searchInput.addEventListener('input', this.handleSearchInput.bind(this));
   }
+
+  onCloseIconClick(optionElement, option) {
+    // Remove the option from the DOM
+    //optionElement.remove();
+
+    // Remove the option from combined options
+    this.filterManager.removeFromCombinedOptions(option);
+
+    // Reset the background and remove close-icon
+    optionElement.classList.remove('selected');
+    const closeIcon = optionElement.querySelector('.material-icons');
+    if (closeIcon) {
+        closeIcon.remove();
+    }
+
+      // Find and remove the corresponding badge
+      const filterBadgesContainer = document.getElementById('filterBadges');
+      const badges = filterBadgesContainer.querySelectorAll('.badge');
+      badges.forEach(badge => {
+          const badgeText = badge.firstChild.textContent.trim().toLowerCase();
+          const optionText = option.trim().toLowerCase();
+          console.log('Badge Text:', badgeText);
+          console.log('Option Text:', optionText);
+          if (badgeText === optionText) {
+              console.log('Badge matched:', badgeText);
+              badge.remove();
+          }
+      });
+}
 
   handleSearchInput(event) {
     const searchTerm = event.target.value.toLowerCase();

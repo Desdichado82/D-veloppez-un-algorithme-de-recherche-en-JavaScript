@@ -108,3 +108,8 @@ input:focus {
     background:$yellow;
     color:black;
   }
+
+  .selected {
+    background-color:$yellow; /* Set your desired background color */
+    font-weight: bold; /* Set your desired font weight */
+}
