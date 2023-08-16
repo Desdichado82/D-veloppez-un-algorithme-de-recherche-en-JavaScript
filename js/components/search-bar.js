@@ -52,7 +52,7 @@ function handleSearch() {
   }
 }
 
-function displayAllRecipes() {
+export function displayAllRecipes() {
   const cardContainer = document.getElementById('recetteContainer');
   cardContainer.innerHTML = '';
   recipes.forEach(item => {

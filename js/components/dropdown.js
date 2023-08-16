@@ -2,8 +2,12 @@ import { recipes } from '../json/recipes.js';
 import Dropdown from '../components/dropdownClass.js';
 import Recette from '../modules/recette.js';
 import { createRecetteCard } from '../factories/recette-carteFactory.js';
+import FilterManager from '../components/filterManager.js';
 
-const clearRecipeCards = () => {
+
+const filterManager = new FilterManager();
+
+export const clearRecipeCards = () => {
     const cardContainer = document.getElementById('recetteContainer');
     cardContainer.innerHTML = '';
 };
@@ -39,7 +43,7 @@ const displayRecipesByIngredient = (selectedIngredient) => {
 };
 
 // Get the ingredients dropdown element from the DOM
-const ingredientsDropdown = new Dropdown('ingredientsContent', [], displayRecipesByIngredient);
+const ingredientsDropdown = new Dropdown('ingredientsContent', [], displayRecipesByIngredient,filterManager);
 
 // Extract unique ingredients from the recipes dataset
 const uniqueIngredients = Array.from(
@@ -64,7 +68,7 @@ const displayRecipesByAppliance = (selectedAppliance) => {
 
 
 // Get the appliances dropdown element from the DOM
-const applianceDropdown = new Dropdown('appareilsContent', [], displayRecipesByAppliance);
+const applianceDropdown = new Dropdown('appareilsContent', [], displayRecipesByAppliance,filterManager);
 
 
 // Extract unique appliances from the recipes dataset
@@ -87,7 +91,7 @@ const displayRecipesByUtensil = (selectedUtensil) => {
   };
   
   // Get the utensils dropdown element from the DOM
-  const utensilsDropdown = new Dropdown('ustensilesContent', [], displayRecipesByUtensil);
+  const utensilsDropdown = new Dropdown('ustensilesContent', [], displayRecipesByUtensil,filterManager);
   
   // Extract unique utensils from the recipes dataset
   const uniqueUtensils = Array.from(
