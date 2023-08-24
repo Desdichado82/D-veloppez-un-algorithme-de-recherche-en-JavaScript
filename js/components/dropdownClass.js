@@ -44,22 +44,6 @@ export default class Dropdown {
     });
 }
 
-createOptionWithCloseIcon(optionElement, option) {
-  optionElement.classList.add('selected');
-
-  const closeIcon = document.createElement('span');
-  closeIcon.className = 'material-icons';
-  closeIcon.textContent = 'highlight_off';
-  optionElement.appendChild(closeIcon);
-
-  closeIcon.addEventListener('click', event => {
-    event.stopPropagation();
-    this.onCloseIconClick(optionElement, option);
-  });
-
-  return optionElement;
-}
-
   initDropdown() {
     const optionList = document.createElement('ul');
     optionList.className = 'options';
@@ -75,9 +59,20 @@ createOptionWithCloseIcon(optionElement, option) {
         this.createAndAppendBadge(option); // Create and append the badge
         this.wrapper.classList.remove('active'); // Remove the active class from the wrapper
         // Add selected class to change background and font weight
-    
-        const optionElementWithIcon = this.createOptionWithCloseIcon(optionElement, option);
-        optionList.replaceChild(optionElementWithIcon, optionElement);
+        optionElement.classList.add('selected');
+        // Add close icon to the option
+        const closeIcon = document.createElement('span');
+        closeIcon.className = 'material-icons';
+        closeIcon.textContent ='highlight_off';
+        optionElement.appendChild(closeIcon);
+
+
+          // Add click event listener to the close icon
+          closeIcon.addEventListener('click', event => {
+            event.stopPropagation(); // Prevent option click event from triggering
+            this.onCloseIconClick(optionElement, option);
+        });
+
      
       });
 
@@ -89,14 +84,15 @@ createOptionWithCloseIcon(optionElement, option) {
 
     this.container.appendChild(optionList); // Append the ul element with li elements
 
-    this.searchInput.addEventListener('input', this.handleSearchInput.bind(this));
-   // Attach the click event listener to the clearSearchBar span
+    const searchInput = this.container.querySelector('.search input');
+    searchInput.addEventListener('input', this.handleSearchInput.bind(this));
+
+     // Attach the click event listener to the clearSearchBar span
    this.clearSearchBar.addEventListener('click', (event) => {
     console.log("Search clicked");
     this.clearInput();
   });
 
-    
   }
 
   onCloseIconClick(optionElement, option) {
@@ -128,13 +124,8 @@ createOptionWithCloseIcon(optionElement, option) {
       });
 }
 
-
-
-
   handleSearchInput(event) {
     const searchTerm = event.target.value.toLowerCase();
-    console.log(searchTerm);
-    this.clearSearchBar.style.opacity = searchTerm.length > 0 ? 1 : 0;
     if (searchTerm.length >= 3) {
       this.filteredOptions = this.options.filter(option =>
         option.toLowerCase().includes(searchTerm)
@@ -180,35 +171,23 @@ createOptionWithCloseIcon(optionElement, option) {
    
   }
 
-// ...
+  updateOptions(options) {
+    const optionList = this.container.querySelector('.options');
+    optionList.innerHTML = ''; // Clear the options
 
-updateOptions(options) {
-  const optionList = this.container.querySelector('.options');
-  optionList.innerHTML = ''; // Clear the options
+    options.forEach(option => {
+      const optionElement = document.createElement('li');
+      optionElement.className = 'option';
+      optionElement.textContent = option;
 
-  options.forEach(option => {
-    const optionElement = document.createElement('li');
-    optionElement.className = 'option';
-    optionElement.textContent = option;
+      optionElement.addEventListener('click', () => {
+        this.onSelect(option); // Call the provided callback
+        this.createAndAppendBadge(option); // Create and append the badge
+        this.attachBadgeCloseButtonListener(); // Attach the badge close button listener
+        this.wrapper.classList.remove('active'); // Remove the active class from the wrapper
+      });
 
-    optionElement.addEventListener('click', () => {
-      this.onSelect(option); // Call the provided callback
-      this.createAndAppendBadge(option); // Create and append the badge
-      this.wrapper.classList.remove('active'); // Remove the active class from the wrapper
-      
-      // Create an option element with the close icon and append it to the list
-      const optionElementWithIcon = this.createOptionWithCloseIcon(optionElement, option);
-      optionList.appendChild(optionElementWithIcon);
+      optionList.appendChild(optionElement);
     });
-
-    // Append the option to the list
-    optionList.appendChild(optionElement);
-  });
-
-  // Attach the badge close button listener once
-  this.attachBadgeCloseButtonListener();
-}
-
-// ...
-
+  }
 }

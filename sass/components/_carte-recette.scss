@@ -14,8 +14,13 @@ article{
         overflow: hidden !important;
         text-overflow: ellipsis;
         -webkit-line-clamp: 4;
+        margin-bottom: 2rem;
 
       }
+
+      .card-title {
+        margin-bottom: 1.75rem;
+    }
 }
 
 .ingredients-list{
@@ -39,5 +44,9 @@ article{
 
   .hide{
     display:none;
+  }
+
+  .quantity-unit{
+    color: var(--bs-secondary-color)!important;
   }
 

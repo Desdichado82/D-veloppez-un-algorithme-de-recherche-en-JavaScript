@@ -118,6 +118,10 @@ input:focus {
     border-radius: 5px;
     background:$yellow;
     color:black;
+
+    .material-icons{
+      padding-left:0.5rem;
+    }
   }
 
   .selected {

@@ -8,8 +8,13 @@
     font-size: 1rem;
   }
 
-  h1,h2,h3,h4,h5,h6,#tagline,.total,.totalTag{
+  h1,h2,h3,h4,h5,#tagline,.total,.totalTag{
     font-family: 'Anton', sans-serif;
+  }
+
+  h6{
+    font-family: 'Manrope', sans-serif;
+    font-weight: 600;
   }
 
   #tagline{

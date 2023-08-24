@@ -9,8 +9,13 @@ body {
   font-size: 1rem;
 }
 
-h1, h2, h3, h4, h5, h6, #tagline, .total, .totalTag {
+h1, h2, h3, h4, h5, #tagline, .total, .totalTag {
   font-family: "Anton", sans-serif;
+}
+
+h6 {
+  font-family: "Manrope", sans-serif;
+  font-weight: 600;
 }
 
 #tagline {
@@ -44,7 +49,7 @@ h1, h2, h3, h4, h5, h6, #tagline, .total, .totalTag {
 .badge {
   background-color: #FFD15B;
   color: black;
-  padding: 0.2rem 0.5rem;
+  padding: 0.5rem 0.5rem;
   margin: 0.2rem 0.5rem;
   border-radius: 4px;
   display: flex;
@@ -78,6 +83,10 @@ article p {
   overflow: hidden !important;
   text-overflow: ellipsis;
   -webkit-line-clamp: 4;
+  margin-bottom: 2rem;
+}
+article .card-title {
+  margin-bottom: 1.75rem;
 }
 
 .ingredients-list {
@@ -101,6 +110,10 @@ article p {
 
 .hide {
   display: none;
+}
+
+.quantity-unit {
+  color: var(--bs-secondary-color) !important;
 }
 
 input:focus {
@@ -237,6 +250,9 @@ input:focus {
   border-radius: 5px;
   background: #FFD15B;
   color: black;
+}
+.option:hover .material-icons, .option.selected .material-icons {
+  padding-left: 0.5rem;
 }
 
 .selected {

@@ -45,7 +45,6 @@ const displayRecipesByIngredient = (selectedIngredient) => {
 // Get the ingredients dropdown element from the DOM
 const ingredientsDropdown = new Dropdown('ingredientsContent', [], displayRecipesByIngredient,filterManager);
 
-
 // Extract unique ingredients from the recipes dataset
 const uniqueIngredients = Array.from(
     new Set(recipes.flatMap(recipe => recipe.ingredients.map(ingredient => ingredient.ingredient)))
@@ -109,7 +108,6 @@ const displayRecipesByUtensil = (selectedUtensil) => {
   
   
   
-
 
 
 
