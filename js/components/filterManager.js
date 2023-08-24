@@ -69,9 +69,25 @@ export default class FilterManager {
         
     
         if (this.combinedOptionsArray.length > 0) {
+            const messageContainer = document.getElementById('messageContainer');
+            const messageSelector = '.alert-warning';
+            const existingMessage = messageContainer.querySelector(messageSelector);
+        
             if (filteredRecipes.length === 0) {
                 console.log('No matches found.'); // Display message if no matches are found
+        
+                if (!existingMessage) {
+                    const noMatchMessage = document.createElement('span');
+                    noMatchMessage.classList = 'alert-warning';
+                    noMatchMessage.textContent = 'Nous n\'avons pas de recette de ce type dans notre base de données.';
+                    messageContainer.appendChild(noMatchMessage);
+                }
             } else {
+                // Remove the existing message if it exists
+                if (existingMessage) {
+                    existingMessage.remove();
+                }
+        
                 filteredRecipes.forEach(item => {
                     const recette = new Recette(item);
                     createRecetteCard(recette);
@@ -79,7 +95,8 @@ export default class FilterManager {
                     card.recetteData = recette;
                 });
             }
-        } else {
+        }
+        else {
             // Display all recipes if no combined options are selected
             displayAllRecipes();
         }

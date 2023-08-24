@@ -126,6 +126,7 @@ export default class Dropdown {
 
   handleSearchInput(event) {
     const searchTerm = event.target.value.toLowerCase();
+    this.clearSearchBar.style.opacity = searchTerm.length > 0 ? 1 : 0;
     if (searchTerm.length >= 3) {
       this.filteredOptions = this.options.filter(option =>
         option.toLowerCase().includes(searchTerm)
@@ -156,9 +157,19 @@ export default class Dropdown {
           this.createAndAppendBadge(option); // Create and append the badge
           this.wrapper.classList.remove('active'); // Remove the active class from the wrapper
           
-          // Create an option element with the close icon and append it to the list
-          const optionElementWithIcon = this.createOptionWithCloseIcon(optionElement, option);
-          optionList.appendChild(optionElementWithIcon);
+          optionElement.classList.add('selected');
+        // Add close icon to the option
+        const closeIcon = document.createElement('span');
+        closeIcon.className = 'material-icons';
+        closeIcon.textContent ='highlight_off';
+        optionElement.appendChild(closeIcon);
+
+
+          // Add click event listener to the close icon
+          closeIcon.addEventListener('click', event => {
+            event.stopPropagation(); // Prevent option click event from triggering
+            this.onCloseIconClick(optionElement, option);
+        });
       });
 
       // Append the option to the list
