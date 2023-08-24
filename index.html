@@ -6,9 +6,9 @@
       <title>Document</title>
       <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-      <link rel="stylesheet" href="./dist/css/main.css">
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
          rel="stylesheet">
+         <link rel="stylesheet" href="./dist/css/main.css">
          
    </head>
   
@@ -24,6 +24,9 @@
          <!-- Search Input -->
          <div id="searchBar" class="input-group search-group mb-3 align-self-center">
             <input id="searchInput" type="search" class="form-control" placeholder="Rechercher une recette,un ingrédient,..." aria-label="Search recipes">
+            
+              <span class="material-icons clearSearchBar" id="clearSearchButton">clear</span>
+            
             <div class="input-group-append">
                <button class="btn petiteBtn" type="button">
                <span class="material-icons">search</span>
@@ -42,6 +45,7 @@
             <div id="ingredientsContent" class="content">
               <div class="search">
                 <input type="search" name="" id="ingredientsFilter">
+                <span class="material-icons clear-search-bar" >clear</span>
                 <i class="material-icons">search</i>
               </div>
             
@@ -55,6 +59,7 @@
             <div id="appareilsContent" class="content">
               <div class="search">
                 <input type="search" name="" id="appareilsFilter">
+                <span class="material-icons clear-search-bar" >clear</span>
                 <i class="material-icons">search</i>
               </div>
               
@@ -68,6 +73,7 @@
             <div id="ustensilesContent" class="content">
               <div class="search">
                 <input type="search" name="" id="ustensilesFilter">
+                <span class="material-icons clear-search-bar" >clear</span>
                 <i class="material-icons">search</i>
               </div>
             </div>
@@ -80,7 +86,7 @@
       </nav>
       
        
-      <div id="labelSearchContainer" class="d-flex"></div>
+      <div id="messageContainer" class="d-flex justify-content-center"></div>
       <main id="recetteContainer"class="card-container">
       </main>
       <footer></footer>
@@ -89,6 +95,7 @@
       <script type="module" src="./js/factories/recette-carteFactory.js"></script>
       <script type="module" src="./js/api/api.js"></script>
       <script type="module" src="./js/components/search-bar.js"></script>
+       <!--<script type="module" src="./js/components/search-bar-functional.js"></script>-->
       <script type="module" src="./js/components/dropdown.js"></script>
       <script type="module" src="./js/components/filterManager.js"></script>
       <script  src="./js/api/mutationObserver.js"></script>

@@ -20,6 +20,13 @@
     border-radius: 4px;
     display: flex;
     align-items: center;
+
+    .material-icons{
+       font-size: 1rem;
+       line-height: 1.5!important;
+       margin-left: 1rem;
+    }
+
 }
 
 .close-icon {

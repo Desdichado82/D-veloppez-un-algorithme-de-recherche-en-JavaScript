@@ -70,8 +70,18 @@ export default class FilterManager {
     
         if (this.combinedOptionsArray.length > 0) {
             if (filteredRecipes.length === 0) {
+                const main = document.getElementById('messageContainer');
+                const noMatch = document.createElement('span');
+                noMatch.className = 'alert-warning';
+                noMatch.textContent = 'No match Found';
+                main.appendChild(noMatch);
+               
+                
+                // Add alert message here
                 console.log('No matches found.'); // Display message if no matches are found
             } else {
+                const alertDiv = document.querySelector('.alert-warning');
+                alertDiv.remove();
                 filteredRecipes.forEach(item => {
                     const recette = new Recette(item);
                     createRecetteCard(recette);

@@ -50,6 +50,11 @@ h1, h2, h3, h4, h5, h6, #tagline, .total, .totalTag {
   display: flex;
   align-items: center;
 }
+.badge .material-icons {
+  font-size: 1rem;
+  line-height: 1.5 !important;
+  margin-left: 1rem;
+}
 
 .close-icon {
   color: black;
@@ -104,7 +109,6 @@ input:focus {
 
 ::selection {
   color: #fff;
-  background: #4285f4;
 }
 
 .wrapper {
@@ -158,14 +162,24 @@ input:focus {
   position: relative;
 }
 
-.search i {
+.search i, .clear-search-bar {
   top: 50%;
-  right: 15px;
   color: #999;
   font-size: 20px;
   pointer-events: none;
   transform: translateY(-50%);
   position: absolute;
+}
+
+.search i {
+  right: 15px;
+}
+
+.clear-search-bar {
+  right: 40px;
+  pointer-events: auto;
+  transition: opacity 0.3s;
+  cursor: pointer;
 }
 
 .search input {
@@ -174,7 +188,7 @@ input:focus {
   outline: none;
   font-size: 1rem;
   border-radius: 5px;
-  padding: 0 20px 0 43px;
+  padding-right: 3.8rem;
   border: 1px solid #B3B3B3;
 }
 
@@ -230,6 +244,13 @@ input:focus {
   font-weight: bold; /* Set your desired font weight */
 }
 
+#clearSearchButton {
+  display: none;
+  font-size: 1rem;
+  align-self: center;
+  padding-right: 1rem;
+}
+
 #searchContainer {
   height: 100%;
 }
@@ -265,6 +286,14 @@ input:focus {
 
 .material-icons {
   line-height: 1.5 !important;
+}
+
+#messageContainer {
+  background-color: #E5E5E5;
+}
+#messageContainer .alert-warning {
+  background-color: #FFD15B;
+  color: black;
 }
 
 /*Layouts*/
