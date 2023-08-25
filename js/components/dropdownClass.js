@@ -182,6 +182,9 @@ export default class Dropdown {
    
   }
 
+
+  
+
   updateOptions(options) {
     const optionList = this.container.querySelector('.options');
     optionList.innerHTML = ''; // Clear the options
@@ -196,6 +199,19 @@ export default class Dropdown {
         this.createAndAppendBadge(option); // Create and append the badge
         this.attachBadgeCloseButtonListener(); // Attach the badge close button listener
         this.wrapper.classList.remove('active'); // Remove the active class from the wrapper
+        optionElement.classList.add('selected');
+        // Add close icon to the option
+        const closeIcon = document.createElement('span');
+        closeIcon.className = 'material-icons';
+        closeIcon.textContent ='highlight_off';
+        optionElement.appendChild(closeIcon);
+
+
+          // Add click event listener to the close icon
+          closeIcon.addEventListener('click', event => {
+            event.stopPropagation(); // Prevent option click event from triggering
+            this.onCloseIconClick(optionElement, option);
+        });
       });
 
       optionList.appendChild(optionElement);
