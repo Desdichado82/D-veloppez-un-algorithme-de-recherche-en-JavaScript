@@ -43,7 +43,7 @@ const displayRecipesByIngredient = (selectedIngredient) => {
 };
 
 // Get the ingredients dropdown element from the DOM
-const ingredientsDropdown = new Dropdown('ingredientsContent', [], displayRecipesByIngredient,filterManager);
+export const ingredientsDropdown = new Dropdown('ingredientsContent', [], displayRecipesByIngredient,filterManager);
 
 // Extract unique ingredients from the recipes dataset
 const uniqueIngredients = Array.from(
@@ -68,7 +68,7 @@ const displayRecipesByAppliance = (selectedAppliance) => {
 
 
 // Get the appliances dropdown element from the DOM
-const applianceDropdown = new Dropdown('appareilsContent', [], displayRecipesByAppliance,filterManager);
+export const applianceDropdown = new Dropdown('appareilsContent', [], displayRecipesByAppliance,filterManager);
 
 
 // Extract unique appliances from the recipes dataset
@@ -91,7 +91,7 @@ const displayRecipesByUtensil = (selectedUtensil) => {
   };
   
   // Get the utensils dropdown element from the DOM
-  const utensilsDropdown = new Dropdown('ustensilesContent', [], displayRecipesByUtensil,filterManager);
+  export const utensilsDropdown = new Dropdown('ustensilesContent', [], displayRecipesByUtensil,filterManager);
   
   // Extract unique utensils from the recipes dataset
   const uniqueUtensils = Array.from(

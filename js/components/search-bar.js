@@ -1,6 +1,8 @@
 import { recipes } from '../json/recipes.js';
+import { displayAllRecipes,removeAlertMessage} from '../api/api.js';
 import Recette from '../modules/recette.js';
 import { createRecetteCard } from '../factories/recette-carteFactory.js';
+import { ingredientsDropdown, applianceDropdown, utensilsDropdown } from '../components/dropdown.js'; // Import the dropdown instances
 
 
 const searchInput = document.getElementById('searchInput');
@@ -18,9 +20,11 @@ searchInput.addEventListener('input', function() {
   clearSearchBar.style.display = searchTerm.length > 0 ? 'block' : 'none';
   if (searchTerm.length === 0) {
     displayAllRecipes();
+    resetDropdownOptions();
     removeAlertMessage();
   } else if (searchTerm.length >= 3) {
-    filterRecipes(searchTerm);
+    const filteredRecipes = filterRecipes(searchTerm);
+    updateDropdownOptions(filteredRecipes);
   }
 });
 
@@ -30,6 +34,7 @@ clearSearchBar.addEventListener('click', function() {
   searchTerm = '';
   clearSearchBar.style.display = 'none';
   displayAllRecipes();
+  resetDropdownOptions();
   removeAlertMessage();
 });
 
@@ -37,6 +42,7 @@ function handleSearchInput() {
   searchTerm = searchInput.value.trim();
   if (searchTerm.length === 0) {
     displayAllRecipes();
+    resetDropdownOptions();
     removeAlertMessage();
     return;
   }
@@ -58,17 +64,20 @@ function handleSearchButtonClick() {
   if (searchTerm.length === 0) {
     displayAllRecipes();
     removeAlertMessage();
+    resetDropdownOptions();
     return;
   }
 
   filterRecipes(searchTerm);
 }
 
+
 function filterRecipes(searchTerm) {
   const cardContainer = document.getElementById('recetteContainer');
   cardContainer.innerHTML = '';
 
   let matchFound = false;
+  const filteredRecipes = [];
 
   for (let i = 0; i < recipes.length; i++) {
     const item = recipes[i];
@@ -83,6 +92,7 @@ function filterRecipes(searchTerm) {
       createRecetteCard(recette);
       const card = document.querySelector('.card:last-child');
       card.recetteData = recette;
+      filteredRecipes.push(recette);
       matchFound = true;
     }
   }
@@ -93,22 +103,10 @@ function filterRecipes(searchTerm) {
   } else {
     removeAlertMessage();
   }
+  return filteredRecipes;
 }
 
-export function displayAllRecipes() {
-  const cardContainer = document.getElementById('recetteContainer');
-  cardContainer.innerHTML = '';
 
-  for (let i = 0; i < recipes.length; i++) {
-    const item = recipes[i];
-    const recette = new Recette(item);
-    createRecetteCard(recette);
-    const card = document.querySelector('.card:last-child');
-    card.recetteData = recette;
-  }
-
-  removeAlertMessage();
-}
 
 function displayAlertMessage(message) {
   if (!document.querySelector('.alert')) {
@@ -121,9 +119,26 @@ function displayAlertMessage(message) {
   }
 }
 
-function removeAlertMessage() {
-  const alertDiv = document.querySelector('.alert');
-  if (alertDiv) {
-    alertDiv.remove();
-  }
+function resetDropdownOptions() {
+  ingredientsDropdown.updateOptions(uniqueIngredients);
+  applianceDropdown.updateOptions(uniqueAppliances);
+  utensilsDropdown.updateOptions(uniqueUtensils);
 }
+
+function updateDropdownOptions(filteredRecipes) {
+  const uniqueIngredients = Array.from(
+    new Set(filteredRecipes.flatMap(recipe => recipe.ingredients.map(ingredient => ingredient.ingredient)))
+  );
+  ingredientsDropdown.updateOptions(uniqueIngredients);
+
+  const uniqueAppliances = Array.from(
+    new Set(filteredRecipes.map(recipe => recipe.appliance))
+  );
+  applianceDropdown.updateOptions(uniqueAppliances);
+
+  const uniqueUtensils = Array.from(
+    new Set(filteredRecipes.flatMap(recipe => recipe.ustensils.map(utensil => utensil)))
+  );
+  utensilsDropdown.updateOptions(uniqueUtensils);
+}
+

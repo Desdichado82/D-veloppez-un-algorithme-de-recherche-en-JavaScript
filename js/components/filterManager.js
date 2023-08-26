@@ -1,8 +1,9 @@
 import { recipes } from '../json/recipes.js';
+import { displayAllRecipes } from '../api/api.js';
 import Recette from '../modules/recette.js';
 import { createRecetteCard } from '../factories/recette-carteFactory.js';
 import {clearRecipeCards} from '../components/dropdown.js'
-import { displayAllRecipes } from '../components/search-bar.js';
+
 
 
 export default class FilterManager {
