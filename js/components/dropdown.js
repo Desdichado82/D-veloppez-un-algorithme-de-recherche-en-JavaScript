@@ -46,7 +46,7 @@ const displayRecipesByIngredient = (selectedIngredient) => {
 export const ingredientsDropdown = new Dropdown('ingredientsContent', [], displayRecipesByIngredient,filterManager);
 
 // Extract unique ingredients from the recipes dataset
-const uniqueIngredients = Array.from(
+export const uniqueIngredients = Array.from(
     new Set(recipes.flatMap(recipe => recipe.ingredients.map(ingredient => ingredient.ingredient)))
 );
 
@@ -72,7 +72,7 @@ export const applianceDropdown = new Dropdown('appareilsContent', [], displayRec
 
 
 // Extract unique appliances from the recipes dataset
-const uniqueAppliances = Array.from(
+export const uniqueAppliances = Array.from(
     new Set(recipes.map(recipe => recipe.appliance))
   );
 
@@ -94,7 +94,7 @@ const displayRecipesByUtensil = (selectedUtensil) => {
   export const utensilsDropdown = new Dropdown('ustensilesContent', [], displayRecipesByUtensil,filterManager);
   
   // Extract unique utensils from the recipes dataset
-  const uniqueUtensils = Array.from(
+  export const uniqueUtensils = Array.from(
     new Set(recipes.flatMap(recipe => recipe.ustensils.map(utensil => utensil)))
   );
   

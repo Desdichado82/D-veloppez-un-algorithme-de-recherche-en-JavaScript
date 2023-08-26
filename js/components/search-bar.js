@@ -2,7 +2,7 @@ import { recipes } from '../json/recipes.js';
 import { displayAllRecipes,removeAlertMessage} from '../api/api.js';
 import Recette from '../modules/recette.js';
 import { createRecetteCard } from '../factories/recette-carteFactory.js';
-import { ingredientsDropdown, applianceDropdown, utensilsDropdown } from '../components/dropdown.js'; // Import the dropdown instances
+import { ingredientsDropdown, applianceDropdown, utensilsDropdown,uniqueIngredients,uniqueAppliances,uniqueUtensils } from '../components/dropdown.js'; // Import the dropdown instances
 
 
 const searchInput = document.getElementById('searchInput');
