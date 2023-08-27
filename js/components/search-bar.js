@@ -1,4 +1,4 @@
-/*
+
 import { recipes } from '../json/recipes.js';
 import { displayAllRecipes,removeAlertMessage} from '../api/api.js';
 import Recette from '../modules/recette.js';
@@ -156,4 +156,4 @@ function updateDropdownOptions(filteredRecipes) {
   );
   utensilsDropdown.updateOptions(uniqueUtensils);
 }
-*/
+
