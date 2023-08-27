@@ -1,3 +1,4 @@
+/*
 import { recipes } from '../json/recipes.js';
 import { displayAllRecipes,removeAlertMessage} from '../api/api.js';
 import Recette from '../modules/recette.js';
@@ -10,6 +11,12 @@ const searchButton = document.querySelector('.petiteBtn');
 const clearSearchBar = document.querySelector('#clearSearchButton');
 let searchTerm = '';
 
+// Regular expressions for input validation
+const validSearchTermRegex = /^[a-zA-Z0-9\s\-']+$/; // Only letters, numbers, spaces, hyphens, and single quotes, at least 3 characters
+
+// Validate the search term against the regular expression
+const validateSearchTerm = (searchTerm) => validSearchTermRegex.test(searchTerm);
+
 // Add event listeners using arrow functions
 searchButton.addEventListener('click', handleSearchButtonClick);
 searchInput.addEventListener('input', handleSearchInput);
@@ -18,6 +25,14 @@ searchInput.addEventListener('input', handleSearchInput);
 searchInput.addEventListener('input', function() {
   searchTerm = searchInput.value.trim();
   clearSearchBar.style.display = searchTerm.length > 0 ? 'block' : 'none';
+  console.log('Input length:', searchTerm.length);
+  console.log('Is input valid?', validateSearchTerm(searchTerm));
+  if (!validateSearchTerm(searchTerm)) {
+    // Invalid input
+    console.log('Input invalid');
+    searchInput.value = '';
+    return;
+  }
   if (searchTerm.length === 0) {
     displayAllRecipes();
     resetDropdownOptions();
@@ -141,4 +156,4 @@ function updateDropdownOptions(filteredRecipes) {
   );
   utensilsDropdown.updateOptions(uniqueUtensils);
 }
-
+*/
