@@ -100,11 +100,17 @@ function filterRecipes(searchTerm) {
     const recette = new Recette(item);
     const recipeName = recette.name.toLowerCase();
     const description = recette.description.toLowerCase();
-    const ingredientList = recette.ingredientList
-      .map(ingredient => ingredient.ingredient.toLowerCase())
-      .join(' ');
 
-    if (recipeName.includes(searchTerm) || ingredientList.includes(searchTerm) || description.includes(searchTerm)) {
+    let ingredientListMatches = false;
+    for (let j = 0; j < recette.ingredientList.length; j++) {
+      const ingredient = recette.ingredientList[j].ingredient.toLowerCase();
+      if (ingredient.includes(searchTerm)) {
+        ingredientListMatches = true;
+        break;
+      }
+    }
+
+    if (recipeName.includes(searchTerm) || ingredientListMatches || description.includes(searchTerm)) {
       createRecetteCard(recette);
       const card = document.querySelector('.card:last-child');
       card.recetteData = recette;

@@ -25,7 +25,8 @@
                 "unit" : "grammes"
             },
             {
-                "ingredient": "Glaçons"
+                "ingredient": "Glaçons",
+                "quantity" : 10,
             }
         ],
         "time": 10,
