@@ -1,10 +1,8 @@
-/*
 import { recipes } from '../json/recipes.js';
-import { displayAllRecipes,removeAlertMessage} from '../api/api.js';
 import Recette from '../modules/recette.js';
 import { createRecetteCard } from '../factories/recette-carteFactory.js';
-import { ingredientsDropdown, applianceDropdown, utensilsDropdown,uniqueIngredients,uniqueAppliances,uniqueUtensils } from '../components/dropdown.js'; // Import the dropdown instances
-
+import { ingredientsDropdown, applianceDropdown, utensilsDropdown, uniqueIngredients, uniqueAppliances, uniqueUtensils } from '../components/dropdown.js';
+import { displayAllRecipes, removeAlertMessage } from '../api/api.js';
 
 const searchInput = document.getElementById('searchInput');
 const searchButton = document.querySelector('.petiteBtn');
@@ -12,27 +10,29 @@ const clearSearchBar = document.querySelector('#clearSearchButton');
 let searchTerm = '';
 
 // Regular expressions for input validation
-const validSearchTermRegex = /^[a-zA-Z0-9\s\-']+$/; // Only letters, numbers, spaces, hyphens, and single quotes, at least 3 characters
+const validSearchTermRegex = /^[a-zA-Z0-9\s\-']+$/; // Only letters, numbers, spaces, hyphens, and single quotes
 
 // Validate the search term against the regular expression
-const validateSearchTerm = (searchTerm) => validSearchTermRegex.test(searchTerm);
+function validateSearchTerm(searchTerm) {
+  return validSearchTermRegex.test(searchTerm);
+}
 
-// Add event listeners using arrow functions
+// Add event listeners
 searchButton.addEventListener('click', handleSearchButtonClick);
 searchInput.addEventListener('input', handleSearchInput);
 
 // Handle input event on search input
-searchInput.addEventListener('input', function() {
+searchInput.addEventListener('input', function () {
   searchTerm = searchInput.value.trim();
   clearSearchBar.style.display = searchTerm.length > 0 ? 'block' : 'none';
-  console.log('Input length:', searchTerm.length);
-  console.log('Is input valid?', validateSearchTerm(searchTerm));
+
   if (!validateSearchTerm(searchTerm)) {
     // Invalid input
     console.log('Input invalid');
     searchInput.value = '';
     return;
   }
+
   if (searchTerm.length === 0) {
     displayAllRecipes();
     resetDropdownOptions();
@@ -44,7 +44,7 @@ searchInput.addEventListener('input', function() {
 });
 
 // Handle clearSearchBar click event
-clearSearchBar.addEventListener('click', function() {
+clearSearchBar.addEventListener('click', function () {
   searchInput.value = '';
   searchTerm = '';
   clearSearchBar.style.display = 'none';
@@ -55,12 +55,14 @@ clearSearchBar.addEventListener('click', function() {
 
 function handleSearchInput() {
   searchTerm = searchInput.value.trim();
+
   if (searchTerm.length === 0) {
     displayAllRecipes();
     resetDropdownOptions();
     removeAlertMessage();
     return;
   }
+
   if (searchTerm.length >= 3) {
     filterRecipes(searchTerm);
   }
@@ -86,7 +88,6 @@ function handleSearchButtonClick() {
   filterRecipes(searchTerm);
 }
 
-
 function filterRecipes(searchTerm) {
   const cardContainer = document.getElementById('recetteContainer');
   cardContainer.innerHTML = '';
@@ -99,11 +100,17 @@ function filterRecipes(searchTerm) {
     const recette = new Recette(item);
     const recipeName = recette.name.toLowerCase();
     const description = recette.description.toLowerCase();
-    const ingredientList = recette.ingredientList
-      .map(ingredient => ingredient.ingredient.toLowerCase())
-      .join(' ');
 
-    if (recipeName.includes(searchTerm) || ingredientList.includes(searchTerm) || description.includes(searchTerm)) {
+    let ingredientListMatches = false;
+    for (let j = 0; j < recette.ingredientList.length; j++) {
+      const ingredient = recette.ingredientList[j].ingredient.toLowerCase();
+      if (ingredient.includes(searchTerm)) {
+        ingredientListMatches = true;
+        break;
+      }
+    }
+
+    if (recipeName.includes(searchTerm) || ingredientListMatches || description.includes(searchTerm)) {
       createRecetteCard(recette);
       const card = document.querySelector('.card:last-child');
       card.recetteData = recette;
@@ -120,8 +127,6 @@ function filterRecipes(searchTerm) {
   }
   return filteredRecipes;
 }
-
-
 
 function displayAlertMessage(message) {
   if (!document.querySelector('.alert')) {
@@ -141,19 +146,34 @@ function resetDropdownOptions() {
 }
 
 function updateDropdownOptions(filteredRecipes) {
-  const uniqueIngredients = Array.from(
-    new Set(filteredRecipes.flatMap(recipe => recipe.ingredients.map(ingredient => ingredient.ingredient)))
-  );
-  ingredientsDropdown.updateOptions(uniqueIngredients);
+  const updatedUniqueIngredients = [];
+  const updatedUniqueAppliances = [];
+  const updatedUniqueUtensils = [];
 
-  const uniqueAppliances = Array.from(
-    new Set(filteredRecipes.map(recipe => recipe.appliance))
-  );
-  applianceDropdown.updateOptions(uniqueAppliances);
+  for (let i = 0; i < filteredRecipes.length; i++) {
+    const recipe = filteredRecipes[i];
 
-  const uniqueUtensils = Array.from(
-    new Set(filteredRecipes.flatMap(recipe => recipe.ustensils.map(utensil => utensil)))
-  );
-  utensilsDropdown.updateOptions(uniqueUtensils);
+    for (let j = 0; j < recipe.ingredients.length; j++) {
+      const ingredient = recipe.ingredients[j].ingredient;
+      if (!updatedUniqueIngredients.includes(ingredient)) {
+        updatedUniqueIngredients.push(ingredient);
+      }
+    }
+
+    const appliance = recipe.appliance;
+    if (!updatedUniqueAppliances.includes(appliance)) {
+      updatedUniqueAppliances.push(appliance);
+    }
+
+    for (let j = 0; j < recipe.ustensils.length; j++) {
+      const utensil = recipe.ustensils[j];
+      if (!updatedUniqueUtensils.includes(utensil)) {
+        updatedUniqueUtensils.push(utensil);
+      }
+    }
+  }
+
+  ingredientsDropdown.updateOptions(updatedUniqueIngredients);
+  applianceDropdown.updateOptions(updatedUniqueAppliances);
+  utensilsDropdown.updateOptions(updatedUniqueUtensils);
 }
-*/
